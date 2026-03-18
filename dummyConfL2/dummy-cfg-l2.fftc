@@ -1,0 +1,496 @@
+<?xml version="1.0"?>
+<testCase version="8.0.0.201908290812">
+    <execution defaultStepTimeout="300"/>
+    <procedures>
+        <item name="main">
+            <steps>
+                <item guid="fe2bdede-f346-4d4b-a0e4-a08d7cf0f44a" action="eval" useFieldsInCommand="false">
+                    <command>
+                        <body>gset mockHost https://vel-alin81t.spirenteng.com:9828</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="740a9bb0-0e5d-4c53-a7ef-b2d04046f792" action="eval" useFieldsInCommand="false">
+                    <command>
+                        <body>gset responseDelayInSeconds 0 </body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="655a143e-1be6-49b6-91f9-9538f1e3520d" action="call" useFieldsInCommand="false">
+                    <command>
+                        <body>getHostParameter</body>
+                    </command>
+                    <postProcessing isStoreResponseGlobal="true">
+                        <storeResponseAt>deviceHost</storeResponseAt>
+                        <storeResponseText>true</storeResponseText>
+                    </postProcessing>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="d2da0387-a488-44ba-a65c-55e4924aa645" action="eval" useFieldsInCommand="false">
+                    <command>
+                        <body>set ret &quot;&quot;</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="c847b78a-5d90-4c82-8978-7868a0e6be80" action="comment" useFieldsInCommand="false">
+                    <command>
+                        <body>executing procedures</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="74aa63e8-e0b7-49f6-9cf5-3a076f3a83ba" action="for" useFieldsInCommand="false">
+                    <command>
+                        <body>{set i 0} {$i &lt; [param call_count]} {incr i}</body>
+                    </command>
+                    <nestedSteps>
+                        <item guid="4c372e3a-f124-48ff-af4d-d6a3fdcbc4e4" action="eval" useFieldsInCommand="false">
+                            <command>
+                                <body>set cl [split [param call_$i]]</body>
+                            </command>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="6017cc4a-20a1-4b3e-b010-7a4b99ae1cfc" action="eval" useFieldsInCommand="false">
+                            <command>
+                                <body>set params [lassign $cl proc]</body>
+                            </command>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="7db88347-0a56-41a7-9628-19c9788750d6" action="comment" useFieldsInCommand="false">
+                            <command>
+                                <body>emulating device delay</body>
+                            </command>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="ec1baf69-f7ca-4f59-8353-ccfee490699c" action="sleep">
+                            <command>
+                                <body>[gget responseDelayInSeconds]</body>
+                            </command>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="6d9b4af2-1713-4cb1-a50a-eaf51ab287d8" action="comment" useFieldsInCommand="false">
+                            <command>
+                                <body>call procedure right now</body>
+                            </command>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="ab78595e-c49d-42e2-9046-5bb1cdb0b251" action="open" session="s1">
+                            <command>
+                                <body>application:com.fnfr.itest.applications.webservices.restful</body>
+                            </command>
+                            <applicationProperties type="com.fnfr.svt.documents.OpenStepPropertyGroup">
+                                <stepProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                <sessionProperties type="com.fnfr.svt.adapter.automation.tools.common.documents.TransferableDocumentObject" transferableToolId="com.fnfr.itest.applications.webservices.restful" transferableType="com.fnfr.itest.applications.webservices.properties.restful.RESTfulSessionProperties" url="[gget mockHost]" url.inherit="false">
+                                    <urlParameters inherit="false" transferableToolId="com.fnfr.itest.applications.webservices.restful">
+                                        <memberClasses>
+                                            <item>com.fnfr.itest.applications.webservices.properties.restful.URLParameter</item>
+                                        </memberClasses>
+                                    </urlParameters>
+                                </sessionProperties>
+                                <sessionClass type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                <sessionVersion type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                            </applicationProperties>
+                            <performResponseMapping>false</performResponseMapping>
+                        </item>
+                        <item guid="554de292-70c0-47d5-9d37-addf754fc929" action="call" useFieldsInCommand="false">
+                            <command>
+                                <body>$proc $params</body>
+                            </command>
+                            <postProcessing>
+                                <analysisRules>
+                                    <item>
+                                        <extractorInfo extractorType="none">
+                                            <extractorProperties type="com.fnfr.svt.documents.EmptyExtractorPropertyGroup"/>
+                                        </extractorInfo>
+                                        <processorInfo ruleType="assert">
+                                            <ruleProperties type="com.fnfr.svt.execution.builtin.processors.AssertionPropertyGroup">
+                                                <expression>1 == 1</expression>
+                                                <actionsWhenTrue>
+                                                    <item actionId="DeclareExecutionIssue">
+                                                        <actionProperties type="com.fnfr.svt.execution.builtin.actions.ExecutionIssuePropertyGroup" severity="OK">
+                                                            <message>{auto_message_true}</message>
+                                                        </actionProperties>
+                                                    </item>
+                                                    <item actionId="PassTestIfNotAlreadyFailed">
+                                                        <actionProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                                    </item>
+                                                </actionsWhenTrue>
+                                                <actionsWhenFalse>
+                                                    <item actionId="DeclareExecutionIssue">
+                                                        <actionProperties type="com.fnfr.svt.execution.builtin.actions.ExecutionIssuePropertyGroup" severity="OK">
+                                                            <message>{auto_message_false}</message>
+                                                        </actionProperties>
+                                                    </item>
+                                                    <item actionId="PassTestIfNotAlreadyFailed">
+                                                        <actionProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                                    </item>
+                                                </actionsWhenFalse>
+                                            </ruleProperties>
+                                        </processorInfo>
+                                    </item>
+                                </analysisRules>
+                                <storeResponseAt>ret</storeResponseAt>
+                                <storeResponseText>true</storeResponseText>
+                            </postProcessing>
+                            <eventHandlers>
+                                <item name="OnQueryExtractorInvalidQuery"/>
+                                <item name="OnInvalidXPathQuery"/>
+                                <item name="OnExecInvalidCallArguments"/>
+                            </eventHandlers>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="a97a16fb-d533-4210-8849-53e88b6f605c" action="close" session="s1">
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                    </nestedSteps>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="1108b0c6-6efa-4f63-81cb-36c521b1f9ae" action="return">
+                    <command>
+                        <body>$ret</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+            </steps>
+        </item>
+        <item name="getConnections" isPublic="true">
+            <steps>
+                <item guid="084ec936-91d8-465c-a369-73129aa0b801" action="sleep">
+                    <command>
+                        <body>2</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="81ec35b2-14b2-43d8-904b-97a14a2448ba" action="return">
+                    <command>
+                        <body>&quot;&quot;</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+            </steps>
+        </item>
+        <item name="connect">
+            <steps>
+                <item guid="c4fecfe3-f91b-41a7-889f-b3393cd44827" action="sleep">
+                    <command>
+                        <body>2</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="cd3b7bf8-c0eb-43a5-91ec-a0ef1aa38f5e" action="return">
+                    <command>
+                        <body>&quot;&quot;</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+            </steps>
+        </item>
+        <item name="disconnect">
+            <steps>
+                <item guid="5b8d8346-c08f-4b14-9457-62c2db1296e9" action="sleep">
+                    <command>
+                        <body>2</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="d20f3902-c72c-490b-b46a-5ddb7770ca4b" action="return">
+                    <command>
+                        <body>&quot;&quot;</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+            </steps>
+        </item>
+        <item name="getPorts">
+            <steps>
+                <item guid="150622c5-791f-4eea-91a4-3524af6fefda" action="GET" session="s1" skip="true">
+                    <command>
+                        <body>[gget mockHost]/management/ports?deviceip=[gget deviceHost]</body>
+                    </command>
+                    <postProcessing>
+                        <storeResponseAt>ports</storeResponseAt>
+                        <storeResponseText>true</storeResponseText>
+                        <appendRespToFile inherit="false">false</appendRespToFile>
+                        <appendCommand inherit="false">false</appendCommand>
+                        <appendTimestamp inherit="false">false</appendTimestamp>
+                    </postProcessing>
+                    <applicationProperties type="com.fnfr.svt.adapter.automation.tools.common.documents.TransferableDocumentObject" transferableToolId="com.fnfr.itest.applications.webservices.restful" transferableType="com.fnfr.itest.applications.webservices.properties.restful.RESTfulInvokeProperties" action="[gget mockHost]/management/ports?deviceip=[gget deviceHost]" action.inherit="false"/>
+                </item>
+                <item guid="691da7c4-c1b0-40d2-9837-9b8e2cbb5a4f" action="eval" useFieldsInCommand="false">
+                    <command>
+                        <body>set ports \\{\\&quot;ports\\&quot;:\\[]}</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="5a4c58c3-80d3-40a1-a7a7-88ceae5df7b1" action="sleep">
+                    <command>
+                        <body>2</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="2750310e-2c50-442e-b00f-ce2413b30c21" action="return">
+                    <command>
+                        <body>$ports</body>
+                    </command>
+                    <postProcessing>
+                        <storeResponseText>true</storeResponseText>
+                        <appendRespToFile inherit="false">false</appendRespToFile>
+                        <appendCommand inherit="false">false</appendCommand>
+                        <appendTimestamp inherit="false">false</appendTimestamp>
+                    </postProcessing>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                    <performResponseMapping>false</performResponseMapping>
+                </item>
+            </steps>
+        </item>
+        <item name="getDeviceStatus">
+            <steps>
+                <item guid="12d0cfbf-da73-4925-85be-d5fc1503d340" action="sleep">
+                    <command>
+                        <body>2</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="27c21547-f70b-4dd5-8915-d9173604f5a3" action="return">
+                    <command>
+                        <body>online</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+            </steps>
+        </item>
+        <item name="getProperties">
+            <steps>
+                <item guid="e182d2bf-eea7-4f82-a84f-9e5896d0eac5" action="GET" session="s1" skip="true">
+                    <command>
+                        <body>[gget mockHost]/management/properties?deviceip=[gget deviceHost]</body>
+                    </command>
+                    <postProcessing>
+                        <storeResponseAt>properties</storeResponseAt>
+                        <storeResponseText>true</storeResponseText>
+                    </postProcessing>
+                    <applicationProperties type="com.fnfr.svt.adapter.automation.tools.common.documents.TransferableDocumentObject" transferableToolId="com.fnfr.itest.applications.webservices.restful" transferableType="com.fnfr.itest.applications.webservices.properties.restful.RESTfulInvokeProperties" action="[gget mockHost]/management/properties?deviceip=[gget deviceHost]" action.inherit="false"/>
+                </item>
+                <item guid="d4a9a075-4878-4352-b5fa-f7842dace8df" action="eval" useFieldsInCommand="false">
+                    <command>
+                        <body>set properties \\{\\&quot;properties\\&quot;:\\{}}</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="f1978207-7dd5-4996-9536-516de49c8fca" action="sleep">
+                    <command>
+                        <body>2</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="dc32c2be-54b3-4f0f-bf88-e91b0ba2fb62" action="return">
+                    <command>
+                        <body>$properties</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                    <performResponseMapping>false</performResponseMapping>
+                </item>
+            </steps>
+        </item>
+        <item name="createVlan">
+            <steps>
+                <item guid="b3e341bf-cd5c-4fca-b208-985d1a4e07fc" action="sleep">
+                    <command>
+                        <body>2</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="945d522c-4cd7-41d0-952f-14637339d3c0" action="return">
+                    <command>
+                        <body>&quot;&quot;</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+            </steps>
+        </item>
+        <item name="destroyVlan">
+            <steps>
+                <item guid="7d1b7b66-7025-4ea9-8488-bc0fc8bf79b7" action="sleep">
+                    <command>
+                        <body>2</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="fb40cd6a-80fe-4982-8711-a3426c107be0" action="return">
+                    <command>
+                        <body>&quot;&quot;</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+            </steps>
+        </item>
+        <item name="addToVlan">
+            <steps>
+                <item guid="125558b6-fcce-462f-b1e3-3c8d943d6735" action="sleep">
+                    <command>
+                        <body>2</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="fc738dfa-6dfa-4f67-9053-7222021dd4a7" action="return">
+                    <command>
+                        <body>&quot;&quot;</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+            </steps>
+        </item>
+        <item name="removeFromVlan">
+            <steps>
+                <item guid="0e14e4dd-3fb7-4e82-9a7c-5a446e7abb82" action="sleep">
+                    <command>
+                        <body>2</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="b302fe1a-ee4f-497d-9650-9ff6318c5f70" action="return">
+                    <command>
+                        <body>&quot;&quot;</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+            </steps>
+        </item>
+        <item name="getHostParameter">
+            <steps>
+                <item guid="92543ebc-4869-4c5a-b739-76a089e99243" action="eval" useFieldsInCommand="false">
+                    <command>
+                        <body>set host &quot;&quot;</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="5f974b08-58b8-4deb-a7aa-206c76806bbb" action="if" useFieldsInCommand="false">
+                    <command>
+                        <body>[info exists param property_ipAddress] == 1</body>
+                    </command>
+                    <nestedSteps>
+                        <item guid="b3bc4589-c9fe-4ff4-8965-fa3c8157ab84" action="then" useFieldsInCommand="false">
+                            <nestedSteps>
+                                <item guid="b6e1c6c3-4c62-4f83-8bca-1f69fc1c5bf1" action="if" useFieldsInCommand="false">
+                                    <command>
+                                        <body>[param property_ipAddress] != &quot;&quot;</body>
+                                    </command>
+                                    <nestedSteps>
+                                        <item guid="5ea598ab-b5bc-473c-b19d-2f98bebc644a" action="then" useFieldsInCommand="false">
+                                            <nestedSteps>
+                                                <item guid="c982c5e4-aaa8-4d0b-ba83-7f5843fa57ee" action="eval" useFieldsInCommand="false">
+                                                    <command>
+                                                        <body>set host [param property_ipAddress]</body>
+                                                    </command>
+                                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                                </item>
+                                            </nestedSteps>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                    </nestedSteps>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                    </nestedSteps>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="7b6dce62-4274-42cd-ae8e-3a70368c3d25" action="if" useFieldsInCommand="false">
+                    <command>
+                        <body>$host == &quot;&quot; &amp;&amp; [info exists param property_Hostname]</body>
+                    </command>
+                    <nestedSteps>
+                        <item guid="7e8ad4a3-57b5-412b-97a3-7c3f5f0da9a2" action="then" useFieldsInCommand="false">
+                            <nestedSteps>
+                                <item guid="63e5ed64-0ea7-4c49-8f08-86e5f7bb6781" action="if" useFieldsInCommand="false">
+                                    <command>
+                                        <body>[param property_Hostname] != &quot;&quot;</body>
+                                    </command>
+                                    <nestedSteps>
+                                        <item guid="f78e446e-facf-48da-af0c-d5b47e52b3a0" action="then" useFieldsInCommand="false">
+                                            <nestedSteps>
+                                                <item guid="2c5c0d68-bec3-4403-8416-deeddca7fd00" action="eval" useFieldsInCommand="false">
+                                                    <command>
+                                                        <body>set host [param property_Hostname]</body>
+                                                    </command>
+                                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                                </item>
+                                            </nestedSteps>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                    </nestedSteps>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                    </nestedSteps>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="3e061729-f6fc-43ce-ba00-0fbf883b4119" action="if" useFieldsInCommand="false">
+                    <command>
+                        <body>$host == &quot;&quot;</body>
+                    </command>
+                    <nestedSteps>
+                        <item guid="cbaf61f3-455b-40b6-bc91-a1a20213b7a4" action="then" useFieldsInCommand="false">
+                            <nestedSteps>
+                                <item guid="bc0bda45-a793-462c-91c4-3d8723c5288a" action="eval" useFieldsInCommand="false">
+                                    <command>
+                                        <body>set host 127.0.0.1</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                    </nestedSteps>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="cf73c61f-ba68-428e-bf70-6a03e366f661" action="sleep">
+                    <command>
+                        <body>2</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="0681f664-d106-4645-aa40-dfa65ae401e4" action="return">
+                    <command>
+                        <body>$host</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+            </steps>
+        </item>
+        <item name="setImage">
+            <steps>
+                <item guid="981d7b55-e520-4488-9b0c-0d3bf11b6eac" action="sleep">
+                    <command>
+                        <body>2</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="63237ac5-07fa-4fc9-a964-26fb5321b4ab" action="return">
+                    <command>
+                        <body>&quot;&quot;</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+            </steps>
+        </item>
+        <item name="setConfig">
+            <steps>
+                <item guid="50b821d2-36c0-4094-ba8a-86007038ceb1" action="sleep">
+                    <command>
+                        <body>2</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="60ac2078-5550-4642-8d88-662344dabc56" action="return">
+                    <command>
+                        <body>&quot;&quot;</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+            </steps>
+        </item>
+    </procedures>
+</testCase>
