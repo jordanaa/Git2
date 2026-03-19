@@ -6,7 +6,6 @@
     <language>itest</language>     
     <interface>Layer 2 Switch</interface> 
     <entryPoint>cisco-8.7.0-custom.fftc</entryPoint>
-	<supportCustomArguments>true</supportCustomArguments>
     <resourceProperties>
         <property optional="true">
             <name>ipAddress</name>
