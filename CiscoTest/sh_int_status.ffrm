@@ -1,0 +1,166 @@
+<?xml version="1.0"?>
+<ResponseMap version="9.5.0.202402062035">
+    <sampleDictionary>
+        <item name="portlist1">
+            <action>
+                <command>
+                    <body>sh int status</body>
+                </command>
+            </action>
+            <responseBody>
+Port      Name               Status       Vlan       Duplex  Speed Type
+Fa1/0/1                      notconnect   1            auto   auto 10/100BaseTX
+Fa1/0/2                      notconnect   1            auto   auto 10/100BaseTX
+Fa1/0/3                      notconnect   1            auto   auto 10/100BaseTX
+Fa1/0/4                      notconnect   1            auto   auto 10/100BaseTX
+Fa1/0/5                      notconnect   1            auto   auto 10/100BaseTX
+Fa1/0/6                      notconnect   1            auto   auto 10/100BaseTX
+Fa1/0/7                      notconnect   1            auto   auto 10/100BaseTX
+          
+Port      Name               Status       Vlan       Duplex  Speed Type
+Fa1/0/8                      notconnect   1            auto   auto 10/100BaseTX
+Fa1/0/9                      notconnect   1            auto   auto 10/100BaseTX
+Fa1/0/10                     notconnect   1            auto   auto 10/100BaseTX
+Fa1/0/11                     disabled     1            auto   auto 10/100BaseTX
+Fa1/0/12  dummy connection t connected    trunk      a-full  a-100 10/100BaseTX
+Fa1/0/13                     notconnect   1            auto   auto 10/100BaseTX
+Fa1/0/14                     notconnect   1            auto   auto 10/100BaseTX
+Fa1/0/15                     notconnect   1            auto   auto 10/100BaseTX
+Fa1/0/16                     notconnect   1            auto   auto 10/100BaseTX
+          
+Port      Name               Status       Vlan       Duplex  Speed Type
+Fa1/0/17                     disabled     1            auto   auto 10/100BaseTX
+Fa1/0/18                     notconnect   1            auto   auto 10/100BaseTX
+Fa1/0/19                     notconnect   1            auto   auto 10/100BaseTX
+Fa1/0/20                     notconnect   1            auto   auto 10/100BaseTX
+Fa1/0/21                     notconnect   1            auto   auto 10/100BaseTX
+Fa1/0/22                     notconnect   203          auto   auto 10/100BaseTX
+Fa1/0/23                     notconnect   207          auto   auto 10/100BaseTX
+Fa1/0/24                     connected    155        a-full  a-100 10/100BaseTX
+Gi1/0/1                      notconnect   207          auto   auto Not Present
+          
+Port      Name               Status       Vlan       Duplex  Speed Type
+Gi1/0/2                      notconnect   routed       auto   auto Not Present
+</responseBody>
+        </item>
+        <item name="portlist2">
+            <action>
+                <command>
+                    <body>sh int status</body>
+                </command>
+            </action>
+            <responseBody>
+Port      Name               Status       Vlan       Duplex  Speed Type 
+Gi1/0/1   MANAS_UBUNTU       connected    64         a-full a-1000 10/100/1000BaseTX
+Gi1/0/2   MANAS_UBUNTU       connected    64         a-full a-1000 10/100/1000BaseTX
+Gi1/0/3   ESXi 10.64.10.67_M connected    64         a-full a-1000 10/100/1000BaseTX
+Gi1/0/4   ESXi 10.64.10.67_V connected    66         a-full a-1000 10/100/1000BaseTX
+Gi1/0/5   ESXi 10.64.10.67_V connected    64         a-full a-1000 10/100/1000BaseTX
+Gi1/0/6   ESXi 10.64.10.112_ connected    64         a-full a-1000 10/100/1000BaseTX
+Gi1/0/7   ESXi 10.64.10.112_ connected    64         a-full a-1000 10/100/1000BaseTX
+Gi1/0/8   ESXi 10.64.10.112_ connected    66         a-full a-1000 10/100/1000BaseTX
+Gi1/0/9                      connected    64         a-full a-1000 10/100/1000BaseTX
+Gi1/0/10                     connected    66         a-full a-1000 10/100/1000BaseTX
+Gi1/0/11                     connected    64         a-full a-1000 10/100/1000BaseTX
+Gi1/0/12  &quot;ESXI_10_64_10_19  connected    64         a-full a-1000 10/100/1000BaseTX
+Gi1/0/13  &quot;COE ION2k 9814 Co connected    64         a-full a-1000 10/100/1000BaseTX
+Gi1/0/14  &quot;COE ION2k 9814 Po connected    64         a-full a-1000 10/100/1000BaseTX
+Gi1/0/15  &quot;COE: ION2K 4716 C connected    64         a-full a-1000 10/100/1000BaseTX
+Gi1/0/16  ESXi 10.64.10.46_V connected    64         a-full a-1000 10/100/1000BaseTX
+Gi1/0/17                     connected    64         a-full a-1000 10/100/1000BaseTX
+Gi1/0/18  ESXi 10.64.10.48_V connected    64         a-full a-1000 10/100/1000BaseTX
+Gi1/0/19  ESXi 10.64.10.49_V connected    64         a-full a-1000 10/100/1000BaseTX
+Gi1/0/20  &quot;Connecting to LAB connected    64         a-full a-1000 10/100/1000BaseTX
+Gi1/0/21  &quot;COE connected to  notconnect   64           auto   auto 10/100/1000BaseTX
+          
+Port      Name               Status       Vlan       Duplex  Speed Type 
+Gi1/0/22                     notconnect   64           auto   auto 10/100/1000BaseTX
+Gi1/0/23                     notconnect   64           auto   auto 10/100/1000BaseTX
+Gi1/0/24                     connected    64         a-full a-1000 10/100/1000BaseTX
+Gi1/0/25                     connected    64         a-full a-1000 10/100/1000BaseTX
+Gi1/0/26                     notconnect   64           auto   auto 10/100/1000BaseTX
+Gi1/0/27  UPLINK_10.64.10.61 notconnect   66           auto   auto 10/100/1000BaseTX
+Gi1/0/28                     connected    64         a-full a-1000 10/100/1000BaseTX
+Gi1/0/29                     notconnect   64           auto   auto 10/100/1000BaseTX
+Gi1/0/30  UPLINK_10.64.10.62 notconnect   66           auto   auto 10/100/1000BaseTX
+Gi1/0/31                     notconnect   64           auto   auto 10/100/1000BaseTX
+Gi1/0/32  ESXi 10.64.10.65_V notconnect   64           auto   auto 10/100/1000BaseTX
+Gi1/0/33                     notconnect   64           auto   auto 10/100/1000BaseTX
+Gi1/0/34                     notconnect   64           auto   auto 10/100/1000BaseTX
+Gi1/0/35  ESXi 10.64.10.63_V connected    64         a-full a-1000 10/100/1000BaseTX
+Gi1/0/36  ESXi 10.64.10.63_V connected    66         a-full a-1000 10/100/1000BaseTX
+Gi1/0/37                     connected    64         a-full a-1000 10/100/1000BaseTX
+Gi1/0/38  ESXi 10.64.10.64_V connected    64         a-full a-1000 10/100/1000BaseTX
+Gi1/0/39  ESXi 10.64.10.64_V notconnect   64           auto   auto 10/100/1000BaseTX
+Gi1/0/40  &quot;COE connected to  notconnect   65           auto   auto 10/100/1000BaseTX
+Gi1/0/41  &quot;COE connected to  connected    64         a-full a-1000 10/100/1000BaseTX
+Gi1/0/42  &quot;COE connected to  connected    64         a-full a-1000 10/100/1000BaseTX
+Gi1/0/43  &quot;COE connected to  connected    65         a-full a-1000 10/100/1000BaseTX
+Gi1/0/44  ESXi 10.64.10.66_V connected    64         a-full a-1000 10/100/1000BaseTX
+          
+Port      Name               Status       Vlan       Duplex  Speed Type 
+Gi1/0/45  &quot;COE connected to  connected    64         a-full a-1000 10/100/1000BaseTX
+Gi1/0/46                     connected    64         a-full  a-100 10/100/1000BaseTX
+Gi1/0/47                     connected    64         a-full a-1000 10/100/1000BaseTX
+Gi1/0/48  LAB_Switch_port 35 connected    trunk      a-full a-1000 10/100/1000BaseTX
+Gi1/0/49                     disabled     1            auto   auto Not Present
+Gi1/0/50                     disabled     1            auto   auto Not Present
+Gi1/0/51                     disabled     1            auto   auto Not Present
+Gi1/0/52                     disabled     1            auto   auto Not Present
+Po1                          notconnect   unassigned   auto   auto 
+Po3                          notconnect   unassigned   auto   auto 
+Fa0                          disabled     routed       auto   auto 10/100BaseTX</responseBody>
+        </item>
+    </sampleDictionary>
+    <mapperProperties>
+        <item type="com.fnfr.svt.mapping.table.TabularMapperProperties">
+            <tabularMaps>
+                <item name="table1">
+                    <banner>Port\\s+Name\\s+Status\\s+Vlan\\s+Duplex\\s+Speed\\s+Type</banner>
+                    <bannerStructure>Regex</bannerStructure>
+                    <columnBoundaries>Positional</columnBoundaries>
+                    <minOccurences>0</minOccurences>
+                    <columns>
+                        <item name="Port">
+                            <width>10</width>
+                            <lastFullCell></lastFullCell>
+                            <uid>76527717-00e6-44ce-a0ad-5713b94a0b3e</uid>
+                        </item>
+                        <item name="Port_Name">
+                            <width>19</width>
+                            <lastFullCell></lastFullCell>
+                            <uid>798e4a7f-2fae-410f-96ca-8f4357037f02</uid>
+                        </item>
+                        <item name="Status">
+                            <width>13</width>
+                            <lastFullCell></lastFullCell>
+                            <uid>6cac7217-141c-4318-be2e-44d0c029458e</uid>
+                        </item>
+                        <item name="Vlan">
+                            <width>10</width>
+                            <lastFullCell></lastFullCell>
+                            <uid>cc9594d1-29ba-4c28-a69c-666abdd7c391</uid>
+                        </item>
+                        <item name="Duplex">
+                            <width>7</width>
+                            <lastFullCell></lastFullCell>
+                            <uid>b40aa279-9afe-405f-a889-62986866940b</uid>
+                        </item>
+                        <item name="Speed">
+                            <width>7</width>
+                            <lastFullCell></lastFullCell>
+                            <uid>5966449a-3baf-44d6-bc71-e82afa86ad3b</uid>
+                        </item>
+                        <item name="Type">
+                            <width>1000</width>
+                            <lastFullCell></lastFullCell>
+                            <uid>dcc3615d-1d7c-4c2d-9fa1-05b7c3d72a76</uid>
+                        </item>
+                    </columns>
+                </item>
+            </tabularMaps>
+        </item>
+    </mapperProperties>
+    <applicabilityProperties actionType="command" command="sh int status" matchType="Regex"/>
+    <xPathVersion>XPATH31</xPathVersion>
+</ResponseMap>
